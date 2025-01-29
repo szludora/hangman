@@ -1,0 +1,150 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-color: rgb(245, 178, 178);
+}
+
+.game {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.result {
+  width: 300px;
+  height: 100px;
+  display: grid;
+  place-content: center;
+}
+
+.hangman {
+  display: grid;
+  place-content: center;
+}
+
+.hangman img {
+  width: 10em;
+  height: 10em;
+}
+
+.ansLetters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.ansLetter {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: #fff;
+  border-radius: 0.4em;
+  font-size: 1.6em;
+  border: none;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.559);
+  text-align: center;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  justify-content: center;
+  gap: 10px;
+  margin: auto;
+  margin-top: 5em;
+}
+
+.keyboard-key {
+  min-width: 1em;
+  min-height: 1em;
+  background-color: #fff;
+  border-radius: 0.4em;
+  font-size: 1.6em;
+  border: none;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.559);
+}
+
+.resetButton {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+/* Telefon */
+@media screen and (max-width: 600px) {
+  .hangman img {
+    width: 6em;
+    height: 6em;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 1020px) and (min-width: 601px) {
+  .keyboard {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .keyboard-key, .ansLetter {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Számítógép */
+@media screen and (min-width: 1025px) {
+  .keyboard {
+    grid-template-columns: repeat(9, 1fr);
+  }
+
+  .keyboard-key, .ansLetter {
+    width: 1.8em;
+    height: 1.8em;
+    font-size: 3em;
+  }
+
+  .result {
+    width: 20em;
+  }
+
+  .result, .resetButton {
+    font-size: 2.5em;
+    padding: 30px;
+    border-radius: 30px;
+  }
+
+  .keyboard, .ansLetters {
+    margin-top: 10em;
+    gap: 1em;
+  }
+}
+
+/* Nagy képernyők (pl. 4K monitorok) */
+@media screen and (min-width: 2000px) {
+  .keyboard {
+    grid-template-columns: repeat(12, 1fr);
+    padding: 2em;
+  }
+
+  .keyboard-key, .ansLetter {
+    font-size: 2em;
+    width: 2em;
+    height: 2em;
+  }
+
+  .result, .resetButton {
+    font-size: 2em;
+    padding: 20px;
+    border-radius: 30px;
+  }
+
+  .keyboard, .ansLetters {
+    margin-top: 10em;
+    gap: 1em;
+  }
+}
