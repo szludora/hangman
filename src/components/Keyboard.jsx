@@ -2,12 +2,11 @@ import React from "react";
 import useDataContext from "../contexts/DataContext";
 
 export default function Keyboard() {
-  const { guessed, handleKeyClick,keyboardKeys} = useDataContext();
+  const { guessed, handleKeyClick, alphabet } = useDataContext();
 
-  
   return (
     <div className="keyboard">
-      {keyboardKeys.map((key, index) => (
+      {alphabet.map((key, index) => (
         <button
           key={index}
           onClick={() => handleKeyClick(key)}

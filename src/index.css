@@ -76,9 +76,11 @@ body {
 
 .ansLetters {
   display: flex;
+  flex-wrap: wrap; /* Engedélyezi a törést */
   justify-content: center;
   align-items: center;
   gap: 10px;
+  max-width: 70%; 
 }
 
 .ansLetter {
@@ -97,6 +99,10 @@ body {
   grid-template-columns: repeat(8, 1fr);
   justify-content: center;
   gap: 10px;
+}
+
+.keyboard, .ansLetters{
+  margin-top: 1em;
 }
 
 .keyboard-key {
@@ -119,6 +125,10 @@ body {
 
 .win, .fail{
   border: 3px solid white;
+}
+
+.space{
+  width: 20px;
 }
 
 @media screen and (max-width: 600px) {

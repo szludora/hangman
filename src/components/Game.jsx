@@ -29,7 +29,6 @@ export default function Game() {
     const randomWord =
       words.words[Math.floor(Math.random() * words.words.length)];
     setAnswer(randomWord);
-    console.log(randomWord);
   }, []);
 
   useEffect(() => {
@@ -40,10 +39,6 @@ export default function Game() {
     if (!end && inputRef.current) {
       inputRef.current.focus();
     }
-    console.log(mistake);
-    console.log("themeClasses", themeClasses);
-    console.log("theme", theme);
-    console.log("themeClasses[theme]", themeClasses[theme]);
   }, [remainingTries, guessed, value, end, theme]);
 
   return (

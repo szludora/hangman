@@ -58,10 +58,7 @@ export const DataProvider = ({ children }) => {
   const [win, setWin] = useState(false);
   const [value, setValue] = useState("");
   const updatedCorrectGuess = [];
-  const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-  const hungarianLetters = ["á", "é", "í", "ó", "ö", "ő", "ú", "ü", "ű"];
-
-  const keyboardKeys = [...alphabet, ...hungarianLetters];
+  const alphabet = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
 
   let answerLetters = answer.split("");
 
@@ -94,7 +91,6 @@ export const DataProvider = ({ children }) => {
     }
 
     removeGuessedMarking();
-    console.log(randomWord);
   };
 
   const increaseMistakeNumber = () => {
@@ -159,9 +155,7 @@ export const DataProvider = ({ children }) => {
         words,
         inputRef,
         handleKeyClick,
-        hungarianLetters,
         alphabet,
-        keyboardKeys,
         clickCounter,
         themeClasses, changeTheme, theme
       }}
