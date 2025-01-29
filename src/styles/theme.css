@@ -1,0 +1,91 @@
+.resetButton,
+.themeButton {
+  font-size: 1.4em;
+  font-weight: 500;
+  color: black;
+}
+.resetButton:hover,
+.themeButton:hover {
+  color: black;
+}
+
+.elso .resetButton,
+.elso .themeButton {
+  background-color: #f4eb36;
+  border: 4px solid rgb(208, 176, 50);
+}
+
+.elso .resetButton:hover,
+.elso .themeButton:hover {
+  background-color: #b4297f;
+  border: 4px solid rgb(175, 61, 146);
+}
+
+.masodik .resetButton,
+.masodik .themeButton {
+  background-color: #f4eb36;
+  border: 4px solid rgb(208, 176, 50);
+}
+
+.masodik .resetButton:hover,
+.masodik .themeButton:hover {
+  border: 4px solid rgb(42, 166, 121);
+  background-color: #15eb80;
+}
+
+.harmadik .resetButton,
+.harmadik .themeButton {
+  background-color: #fdd07c;
+  border: 4px solid rgb(208, 176, 50);
+}
+
+.harmadik .resetButton:hover,
+.harmadik .themeButton:hover {
+  background-color: #c960a1;
+  border: 4px solid rgb(188, 60, 158);
+}
+
+.elso {
+  background-image: url("../assets/imgs/b1.jpg");
+}
+.masodik {
+  background-image: url("../assets/imgs/b2.jpg");
+}
+.harmadik {
+  background-image: url("../assets/imgs/b3.jpg");
+}
+
+.elso .game {
+  border: 10px solid rgb(243, 209, 98);
+}
+
+.elso .keyboard-key {
+  background-color: #fdec7c;
+}
+
+.elso .guessed {
+  background-color: #8e7443;
+}
+
+.masodik .game {
+  border: 10px solid rgb(246, 231, 121);
+}
+
+.masodik .keyboard-key {
+  background-color: #ffe437;
+}
+
+.masodik .guessed {
+  background-color: #80731e;
+}
+.harmadik .game {
+  border: 10px solid rgb(204, 118, 71);
+}
+
+.harmadik .keyboard-key {
+  background-color: #fdd07c;
+}
+
+.harmadik .guessed {
+  background-color: #967c4c;
+}

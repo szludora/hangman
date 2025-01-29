@@ -23,6 +23,19 @@ export const DataProvider = ({ children }) => {
   const [guessed, setGuessed] = useState([]);
   const inputRef = useRef(null);
   const [remainingTries, setRemainingTries] = useState(12);
+
+  const [theme, setTheme] = useState(0);
+
+  const themeClasses = ["elso", "masodik", "harmadik"]
+
+  function changeTheme() {
+    if(theme == 2){
+      setTheme(0);
+    }else{
+      setTheme(theme+1);
+    }
+  }
+
   const images = [
     hm0,
     hm1,
@@ -105,7 +118,6 @@ export const DataProvider = ({ children }) => {
           }
         }
         setClickCounter(clickCounter + 1);
-
       } else {
         increaseMistakeNumber();
         setClickCounter(clickCounter + 1);
@@ -150,7 +162,8 @@ export const DataProvider = ({ children }) => {
         hungarianLetters,
         alphabet,
         keyboardKeys,
-        clickCounter
+        clickCounter,
+        themeClasses, changeTheme, theme
       }}
     >
       {children}

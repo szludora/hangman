@@ -1,0 +1,19 @@
+.game {
+  border: 10px solid rgb(243, 209, 98);
+  border: 10px solid rgb(246, 231, 121);
+  border: 10px solid rgb(204, 118, 71);
+}
+
+.keyboard-key {
+  background-color: #fdec7c;
+  background-color: #ffe437;
+  background-color: #fdd07c;
+
+}
+
+.guessed {
+  background-color:  #8e7443;
+  background-color: #80731e;
+  background-color:  #967c4c;
+  color: rgb(255, 251, 251);
+}
