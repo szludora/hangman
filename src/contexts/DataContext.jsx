@@ -26,7 +26,7 @@ export const DataProvider = ({ children }) => {
 
   const [theme, setTheme] = useState(0);
 
-  const themeClasses = ["elso", "masodik", "harmadik"]
+  const themeClasses = ["green","red" , "lightpink"]
 
   function changeTheme() {
     if(theme == 2){

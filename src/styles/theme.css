@@ -9,83 +9,129 @@
   color: black;
 }
 
-.elso .resetButton,
-.elso .themeButton {
+.red .resetButton,
+.red .themeButton {
+  background-color:  #fdec7c;
+}
+
+.red .resetButton:hover,
+.red .themeButton:hover {
+  background-color: rgb(219, 134, 134);
+  border: 4px solid rgb(182, 71, 71);
+}
+
+.green .resetButton,
+.green .themeButton {
   background-color: #f4eb36;
-  border: 4px solid rgb(208, 176, 50);
 }
 
-.elso .resetButton:hover,
-.elso .themeButton:hover {
-  background-color: #b4297f;
-  border: 4px solid rgb(175, 61, 146);
-}
-
-.masodik .resetButton,
-.masodik .themeButton {
-  background-color: #f4eb36;
-  border: 4px solid rgb(208, 176, 50);
-}
-
-.masodik .resetButton:hover,
-.masodik .themeButton:hover {
+.green .resetButton:hover,
+.green .themeButton:hover {
   border: 4px solid rgb(42, 166, 121);
-  background-color: #15eb80;
+  background-color: rgb(76, 205, 158);
 }
 
-.harmadik .resetButton,
-.harmadik .themeButton {
+.lightpink .resetButton,
+.lightpink .themeButton {
   background-color: #fdd07c;
-  border: 4px solid rgb(208, 176, 50);
 }
 
-.harmadik .resetButton:hover,
-.harmadik .themeButton:hover {
-  background-color: #c960a1;
-  border: 4px solid rgb(188, 60, 158);
+.lightpink .resetButton:hover,
+.lightpink .themeButton:hover {
+  background-color: rgb(226, 144, 100);
+  border: 4px solid rgb(199, 130, 92);
 }
 
-.elso {
+.red {
   background-image: url("../assets/imgs/b1.jpg");
 }
-.masodik {
+.green {
   background-image: url("../assets/imgs/b2.jpg");
 }
-.harmadik {
+.lightpink {
   background-image: url("../assets/imgs/b3.jpg");
 }
 
-.elso .game {
-  border: 10px solid rgb(243, 209, 98);
+.red .game {
+  border: 10px solid rgb(219, 134, 134);
 }
 
-.elso .keyboard-key {
+.red .keyboard-key {
   background-color: #fdec7c;
 }
 
-.elso .guessed {
-  background-color: #8e7443;
+.red .guessed {
+  background-color: #a68f65;
 }
 
-.masodik .game {
-  border: 10px solid rgb(246, 231, 121);
+.green .game {
+  border: 10px solid rgb(76, 205, 158);
 }
 
-.masodik .keyboard-key {
+.green .keyboard-key {
   background-color: #ffe437;
 }
 
-.masodik .guessed {
-  background-color: #80731e;
+.green .guessed {
+  background-color: rgb(164, 155, 100);
 }
-.harmadik .game {
-  border: 10px solid rgb(204, 118, 71);
+.lightpink .game {
+  border: 10px solid rgb(226, 144, 100);
 }
 
-.harmadik .keyboard-key {
+.lightpink .keyboard-key {
   background-color: #fdd07c;
 }
 
-.harmadik .guessed {
-  background-color: #967c4c;
+.lightpink .guessed {
+  background-color: #c7ae80;
+}
+
+.win, .fail{
+  width: 500px;
+  height: 100px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+  font-size: 1.2em;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.green .win, .green .fail{
+  background-color: rgb(76, 205, 158);
+}
+
+.red .win, .red .fail{
+  background-color: rgb(219, 134, 134);
+}
+
+.lightpink .win, .lightpink .fail{
+  background-color: rgb(226, 144, 100);
+}
+
+.red .ansLetter{
+  background-color: rgb(219, 134, 134);
+}
+
+.green .ansLetter{
+  background-color: rgb(76, 205, 158);
+}
+
+.lightpink .ansLetter{
+  background-color: rgb(226, 144, 100);
+}
+
+.lightpink .hangman{
+  background: rgb(226, 144, 100);
+}
+
+.green .hangman{
+  background: rgb(76, 205, 158);
+}
+
+.red .hangman{
+  background: rgb(219, 134, 134);
 }
