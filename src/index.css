@@ -328,6 +328,7 @@ body {
 
   .remainingTries {
     color: white;
+    display: block;
   }
 
   .ansLetters,
