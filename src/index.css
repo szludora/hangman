@@ -14,7 +14,7 @@ body {
 body {
   width: 100vw;
   height: 100vw;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .gameContainer {
@@ -22,18 +22,24 @@ body {
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
-  padding-top: 4em;
+  padding-top: 1em;
 }
 
 .themeButton,
 .resetButton {
   display: inline-block;
-  font-size: .8em;
-  padding: .3em;
+  font-size: 0.8em;
+  padding: 0.3em;
   border-radius: 30px;
   width: 6.9em;
   border: 3px solid white;
 }
+
+.remainingTries{
+  display: none;
+}
+
+
 
 .resetButton {
   margin-right: 3em;
@@ -49,9 +55,9 @@ body {
   grid-template-rows: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
-  height: 80vh;
+  height: 90vh;
   width: 50vw;
-  overflow: auto;
+  overflow: hidden;
   margin: auto;
   border: 10px solid rgb(243, 209, 98);
   background-color: rgba(11, 11, 11, 0.061);
@@ -76,11 +82,15 @@ body {
 
 .ansLetters {
   display: flex;
-  flex-wrap: wrap; /* Engedélyezi a törést */
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  max-width: 70%; 
+  max-width: 70%;
+}
+
+.ansLetters, .keyboard{
+  padding-top: 1em;
 }
 
 .ansLetter {
@@ -102,7 +112,8 @@ body {
   gap: 10px;
 }
 
-.keyboard, .ansLetters{
+.keyboard,
+.ansLetters {
   margin-top: 1em;
 }
 
@@ -124,29 +135,34 @@ body {
   color: black;
 }
 
-.win, .fail{
+.win,
+.fail {
   border: 3px solid white;
 }
 
-.space{
+.space {
   width: 20px;
 }
 
 @media screen and (max-width: 600px) {
-  .resetButton, .themeButton{
+  .resetButton,
+  .themeButton {
     width: 5em;
     font-size: 13px;
   }
 
-  .themeButton{
+  .themeButton {
     padding-top: 1.1em;
     padding-bottom: 1.1em;
     text-align: center;
   }
-  
+
   .hangman img {
-    width: 5em;
-    height: 5em;
+    width: 4em;
+    height: 4em;
+  }
+  .hangman{
+    padding: 2em;
   }
   .keyboard {
     grid-template-columns: repeat(8, 1fr);
@@ -166,11 +182,13 @@ body {
     border-radius: 0;
   }
 
-  .win, .fail {
-    height: 4em;
-    width: 15em;
+  .win,
+  .fail {
+    height: 3em;
+    width: 20em;
     font-size: 1em;
   }
+
 }
 @media screen and (max-width: 1025px) and (min-width: 600px) {
   .hangman img {
@@ -183,7 +201,8 @@ body {
   .game {
     width: 90vw;
   }
-  .win, .fail {
+  .win,
+  .fail {
     width: 20em;
     height: 3em;
   }
@@ -196,9 +215,9 @@ body {
   }
 
   .themeButton,
-.resetButton {
-  font-size: 1em;
-}
+  .resetButton {
+    font-size: 1em;
+  }
 }
 
 @media screen and (min-width: 1025px) {
@@ -213,7 +232,8 @@ body {
     font-size: 2.3em;
   }
 
-  .win, .fail {
+  .win,
+  .fail {
     width: 20em;
     height: 3.5em;
   }
@@ -273,5 +293,65 @@ body {
   .themeButton,
   .resetButton {
     font-size: 1.4em;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 1000px) {
+  .resetButton,
+  .themeButton {
+    width: 7em;
+    font-size: 13px;
+  }
+
+  .hangman {
+    padding: 1.5em;
+    display: none;
+  }
+
+  .hangman img {
+    width: 3em;
+    height: 3em;
+  }
+  .game {
+    height: 100vh;
+  }
+  .keyboard {
+    grid-template-columns: repeat(14, 1fr);
+  }
+
+  .keyboard-key,
+  .ansLetter {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8em;
+  }
+
+  .remainingTries {
+    color: white;
+  }
+
+  .ansLetters,
+  .keyboard {
+    padding-bottom: 1em;
+  }
+
+  .game {
+    border: none !important;
+    width: 100vw;
+    box-shadow: none !important;
+    background-color: transparent;
+    backdrop-filter: none;
+    border-radius: 0;
+  }
+
+  .result {
+    padding-bottom: 1em;
+  }
+
+  .win,
+  .fail {
+    height: 3em;
+    width: 25em;
+    font-size: 0.8em;
   }
 }

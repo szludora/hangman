@@ -2,7 +2,7 @@ import React from "react";
 import useDataContext from "../contexts/DataContext";
 
 export default function Result() {
-  const { end, win, clickCounter, streak } = useDataContext();
+  const { end, win, clickCounter, streak, remainingTries } = useDataContext();
   
   return (
     <div className="result">
@@ -13,7 +13,7 @@ export default function Result() {
           <div className="fail">Sorry, you didn't catch the word. Streak: {streak}</div>
         )
       ) : (
-        <div className="resultMessage"></div>
+        <div className="remainingTries">Hátralévő próbálkozások száma: {remainingTries}</div>
       )}
     </div>
   );
