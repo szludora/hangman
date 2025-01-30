@@ -1,9 +1,9 @@
 .resetButton,
 .themeButton {
-  font-size: 1.4em;
   font-weight: 500;
   color: black;
 }
+
 .resetButton:hover,
 .themeButton:hover {
   color: black;

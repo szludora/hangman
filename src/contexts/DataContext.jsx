@@ -23,16 +23,21 @@ export const DataProvider = ({ children }) => {
   const [guessed, setGuessed] = useState([]);
   const inputRef = useRef(null);
   const [remainingTries, setRemainingTries] = useState(12);
-
+  const [streak, setStreak] = useState(0);
   const [theme, setTheme] = useState(0);
 
-  const themeClasses = ["green","red" , "lightpink"]
+  const themeClasses = ["green", "red", "lightpink"];
+
+  function handleStreakReset() {
+    setStreak(0);
+    // handleReset();
+  }
 
   function changeTheme() {
-    if(theme == 2){
+    if (theme == 2) {
       setTheme(0);
-    }else{
-      setTheme(theme+1);
+    } else {
+      setTheme(theme + 1);
     }
   }
 
@@ -86,8 +91,10 @@ export const DataProvider = ({ children }) => {
     answerLetters = answer.split("");
 
     for (let i = 0; i < answerLetters.length; i++) {
-      let letter = document.querySelector(`.ansLetter[index="${i}"]`);
-      letter.value = "";
+      if (answerLetters[i] != " ") {
+        let letter = document.querySelector(`.ansLetter[index="${i}"]`);
+        letter.value = "";
+      }
     }
 
     removeGuessedMarking();
@@ -126,6 +133,7 @@ export const DataProvider = ({ children }) => {
       ) {
         setEnd(true);
         setWin(true);
+        setStreak(streak + 1);
       }
     }
   };
@@ -157,7 +165,12 @@ export const DataProvider = ({ children }) => {
         handleKeyClick,
         alphabet,
         clickCounter,
-        themeClasses, changeTheme, theme
+        themeClasses,
+        changeTheme,
+        theme,
+        handleStreakReset,
+        streak,
+        setStreak,
       }}
     >
       {children}

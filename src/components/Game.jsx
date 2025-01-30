@@ -11,6 +11,7 @@ import { Container } from "react-bootstrap";
 export default function Game() {
   const {
     mistake,
+    answer,
     setAnswer,
     guessed,
     remainingTries,
@@ -23,6 +24,8 @@ export default function Game() {
     inputRef,
     themeClasses,
     theme,
+    streak,
+    setStreak,
   } = useDataContext();
 
   useEffect(() => {
@@ -32,14 +35,17 @@ export default function Game() {
   }, []);
 
   useEffect(() => {
+    console.log(answer);
+
     if (mistake == images.length) {
       setEnd(true);
       setWin(false);
+      setStreak(0);
     }
     if (!end && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [remainingTries, guessed, value, end, theme]);
+  }, [remainingTries, guessed, value, end, theme, streak]);
 
   return (
     <Container fluid className={`gameContainer ${themeClasses[theme]}`}>
