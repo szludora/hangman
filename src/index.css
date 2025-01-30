@@ -35,11 +35,9 @@ body {
   border: 3px solid white;
 }
 
-.remainingTries{
+.remainingTries {
   display: none;
 }
-
-
 
 .resetButton {
   margin-right: 3em;
@@ -89,7 +87,8 @@ body {
   max-width: 70%;
 }
 
-.ansLetters, .keyboard{
+.ansLetters,
+.keyboard {
   padding-top: 1em;
 }
 
@@ -161,7 +160,7 @@ body {
     width: 4em;
     height: 4em;
   }
-  .hangman{
+  .hangman {
     padding: 2em;
   }
   .keyboard {
@@ -189,6 +188,12 @@ body {
     font-size: 1em;
   }
 
+  .win {
+    height: 4em;
+  }
+  .result {
+    padding-bottom: 0.5em;
+  }
 }
 @media screen and (max-width: 1025px) and (min-width: 600px) {
   .hangman img {
