@@ -28,11 +28,6 @@ export const DataProvider = ({ children }) => {
 
   const themeClasses = ["green", "red", "lightpink"];
 
-  function handleStreakReset() {
-    setStreak(0);
-    // handleReset();
-  }
-
   function changeTheme() {
     if (theme == 2) {
       setTheme(0);
@@ -75,7 +70,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const handleReset = () => {
+  function resetGame() {
     setMistake(1);
     setCorrectGuess([]);
     setGuessed([]);
@@ -91,13 +86,24 @@ export const DataProvider = ({ children }) => {
     answerLetters = answer.split("");
 
     for (let i = 0; i < answerLetters.length; i++) {
-      if (answerLetters[i] != " ") {
+      if (answerLetters[i] !== " ") {
         let letter = document.querySelector(`.ansLetter[index="${i}"]`);
         letter.value = "";
       }
     }
 
     removeGuessedMarking();
+  }
+
+  const handleReset = () => {
+    if (!win) {
+      if (confirm("Ha nem teljesíted ezt a szót, elveszíted a streaked.")) {
+        setStreak(0);
+        resetGame();
+      }
+    } else {
+      resetGame();
+    }
   };
 
   const increaseMistakeNumber = () => {
@@ -168,7 +174,6 @@ export const DataProvider = ({ children }) => {
         themeClasses,
         changeTheme,
         theme,
-        handleStreakReset,
         streak,
         setStreak,
       }}

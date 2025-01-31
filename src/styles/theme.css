@@ -22,7 +22,7 @@
 
 .green .resetButton,
 .green .themeButton {
-  background-color: #f4eb36;
+  background-color: #fdec7c;
 }
 
 .green .resetButton:hover,
@@ -69,7 +69,7 @@
 }
 
 .green .keyboard-key {
-  background-color: #ffe437;
+  background-color: #fdec7c;
 }
 
 .green .guessed {
