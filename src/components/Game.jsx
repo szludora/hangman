@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Result from "../components/Result";
-import AnswerLetters from "../components/answerLetters";
+import AnswerLetters from "../components/AnswerLetters";
 import HangMan from "../components/HangMan";
 import ResetButton from "../components/ResetButton";
 import ThemeButton from "../components/ThemeButton";

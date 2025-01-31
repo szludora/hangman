@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import useDataContext from "../contexts/DataContext";
 import Form from "react-bootstrap/Form";
 
 export default function AnswerLetters() {
-  const { answerLetters } = useDataContext();
+  const { answerLetters, ansLetterKeys } = useDataContext();
 
   return (
     <div className="ansLetters">
@@ -24,6 +24,11 @@ export default function AnswerLetters() {
         ) : (
           <Form.Control
             index={i}
+            ref={(e) => {
+              if (e !== " ") {
+                ansLetterKeys.current[i] = e;
+              }
+            }}
             key={`letter-${i}`}
             disabled
             type="text"

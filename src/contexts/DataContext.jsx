@@ -25,7 +25,8 @@ export const DataProvider = ({ children }) => {
   const [remainingTries, setRemainingTries] = useState(12);
   const [streak, setStreak] = useState(0);
   const [theme, setTheme] = useState(0);
-
+  const ansLetterKeys = useRef([]);
+  const keyboardKeys = useRef([]);
   const themeClasses = ["green", "red", "lightpink"];
 
   function changeTheme() {
@@ -62,13 +63,6 @@ export const DataProvider = ({ children }) => {
 
   let answerLetters = answer.split("");
 
-  const removeGuessedMarking = () => {
-    let keyElements = document.querySelectorAll(".keyboard-key");
-    for (let i = 0; i < keyElements.length; i++) {
-      let keyElement = keyElements[i];
-      keyElement.classList.remove("guessed");
-    }
-  };
 
   function resetGame() {
     setMistake(1);
@@ -87,16 +81,14 @@ export const DataProvider = ({ children }) => {
 
     for (let i = 0; i < answerLetters.length; i++) {
       if (answerLetters[i] !== " ") {
-        let letter = document.querySelector(`.ansLetter[index="${i}"]`);
-        letter.value = "";
+        ansLetterKeys.current[i].value = "";
       }
     }
 
-    removeGuessedMarking();
   }
 
   const handleReset = () => {
-    if (!win) {
+    if (!win && mistake < 13 && streak > 0) {
       if (confirm("Ha nem teljesíted ezt a szót, elveszíted a streaked.")) {
         setStreak(0);
         resetGame();
@@ -119,8 +111,7 @@ export const DataProvider = ({ children }) => {
       if (answerLetters.includes(key)) {
         for (let i = 0; i < answerLetters.length; i++) {
           if (answerLetters[i] == key) {
-            let letter = document.querySelector(`.ansLetter[index="${i}"]`);
-            letter.value = key;
+            ansLetterKeys.current[i].value = key;
             let prev = correctGuess;
             prev.push(key);
             setCorrectGuess(prev);
@@ -175,7 +166,7 @@ export const DataProvider = ({ children }) => {
         changeTheme,
         theme,
         streak,
-        setStreak,
+        setStreak,ansLetterKeys
       }}
     >
       {children}
