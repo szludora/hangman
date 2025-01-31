@@ -32,28 +32,30 @@ export const DataProvider = ({ children }) => {
   const [streak, setStreak] = useState(0);
   const [theme, setTheme] = useState(0);
   const ansLetterKeys = useRef([]);
-  const keyboardKeys = useRef([]);
   const themeClasses = ["green", "red", "lightpink"];
-  const [clickCounter, setClickCounter] = useState(0);
-
   const [end, setEnd] = useState(false);
   const [win, setWin] = useState(false);
   const [value, setValue] = useState("");
   const updatedCorrectGuess = [];
   const alphabet = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
+  const keyboard = useRef([]);
+  const [clickCounter, setClickCounter] = useState(0);
+  const [isEnglish, setIsEnglish] = useState(false);
+  const englishWords = words.englishWords;
+  const hungarianWords = words.words;
+  const [currentLangWords, setCurrentLangWords] = useState(words.words);
 
-  let answerLetters = answer.split("");
-  function changeTheme() {
-    if (theme == 2) {
-      setTheme(0);
-    } else {
-      setTheme(theme + 1);
-    }
-  }
+  useEffect(() => {
+    setCurrentLangWords(isEnglish ? englishWords : hungarianWords);
+  }, [isEnglish]);
+
+  useEffect(() => {
+    resetGame();
+  }, [currentLangWords]);
 
   useEffect(() => {
     console.log(answer);
-
+    focus();
     if (mistake == images.length) {
       setEnd(true);
       setWin(false);
@@ -66,7 +68,27 @@ export const DataProvider = ({ children }) => {
         }
       }
     }
-  }, [end, remainingTries]);
+  }, [end, remainingTries, clickCounter]);
+
+  const toggleLanguage = () => {
+    if (handleReset()) {
+      setIsEnglish((prev) => !prev);
+    }
+  };
+
+  function focus() {
+    inputRef.current.focus();
+    inputRef.current.select();
+  }
+
+  let answerLetters = answer.split("");
+  function changeTheme() {
+    if (theme == 2) {
+      setTheme(0);
+    } else {
+      setTheme(theme + 1);
+    }
+  }
 
   const images = [
     hm0,
@@ -85,6 +107,8 @@ export const DataProvider = ({ children }) => {
   ];
 
   function resetGame() {
+    console.log("reset");
+
     setMistake(1);
     setCorrectGuess([]);
     setGuessed([]);
@@ -92,11 +116,13 @@ export const DataProvider = ({ children }) => {
     setEnd(false);
     setWin(false);
     setValue("");
-    setClickCounter(0);
 
     const randomWord =
-      words.words[Math.floor(Math.random() * words.words.length)];
+      currentLangWords[Math.floor(Math.random() * currentLangWords.length)];
+    console.log(currentLangWords);
+
     setAnswer(randomWord);
+
     answerLetters = answer.split("");
 
     for (let i = 0; i < answerLetters.length; i++) {
@@ -112,9 +138,13 @@ export const DataProvider = ({ children }) => {
       if (confirm("Ha nem teljesíted ezt a szót, elveszíted a streaked.")) {
         setStreak(0);
         resetGame();
+        setClickCounter(0);
+        return true;
       }
     } else {
+      setClickCounter(0);
       resetGame();
+      return false;
     }
   };
 
@@ -126,6 +156,9 @@ export const DataProvider = ({ children }) => {
   };
 
   const handleKeyClick = (key) => {
+    focus();
+    console.log("key: ", key);
+
     if (mistake != 13 && !end && !guessed.includes(key)) {
       setGuessed((prevGuessed) => [...prevGuessed, key]);
       if (answerLetters.includes(key)) {
@@ -145,7 +178,7 @@ export const DataProvider = ({ children }) => {
 
       if (
         answerLetters
-          .filter((letter) => letter !== " " && letter !== "-")
+          .filter((letter) => letter !== " " && letter !== "–")
           .every((letter) => correctGuess.includes(letter))
       ) {
         setEnd(true);
@@ -181,13 +214,18 @@ export const DataProvider = ({ children }) => {
         inputRef,
         handleKeyClick,
         alphabet,
-        clickCounter,
         themeClasses,
         changeTheme,
         theme,
         streak,
         setStreak,
         ansLetterKeys,
+        clickCounter,
+        focus,
+        keyboard,
+        toggleLanguage,
+        setIsEnglish,
+        isEnglish,
       }}
     >
       {children}

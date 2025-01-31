@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useDataContext from "../contexts/DataContext";
 import Form from "react-bootstrap/Form";
 
 export default function AnswerLetters() {
   const { answerLetters, ansLetterKeys } = useDataContext();
-
+  
   return (
     <div className="ansLetters">
       {answerLetters.map((letter, i) =>
@@ -15,7 +15,7 @@ export default function AnswerLetters() {
         ) : letter === "-" ? (
           <Form.Control
             index={i}
-            value={"-"}
+            value={"–"}
             className="dash"
             key={`dash-${i}`}
             disabled

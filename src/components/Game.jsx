@@ -7,26 +7,11 @@ import ThemeButton from "../components/ThemeButton";
 import useDataContext from "../contexts/DataContext";
 import Keyboard from "./Keyboard";
 import { Container } from "react-bootstrap";
+import KeyboardListener from "./KeyboardListener";
+import LanguageButton from "./LanguageButton";
 
 export default function Game() {
-  const {
-    mistake,
-    answer,
-    setAnswer,
-    guessed,
-    remainingTries,
-    end,
-    setEnd,
-    setWin,
-    value,
-    images,
-    words,
-    inputRef,
-    themeClasses,
-    theme,
-    streak,
-    setStreak,
-  } = useDataContext();
+  const { setAnswer, words, themeClasses, theme } = useDataContext();
 
   useEffect(() => {
     const randomWord =
@@ -34,21 +19,15 @@ export default function Game() {
     setAnswer(randomWord);
   }, []);
 
-  useEffect(() => {
-    console.log(answer);
-
-    if (!end && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [remainingTries, guessed, value, end, theme, streak]);
-
   return (
     <Container fluid className={`gameContainer ${themeClasses[theme]}`}>
       <div className="game">
+        <LanguageButton />
         <Result />
         <HangMan />
         <AnswerLetters />
         <Keyboard />
+        <KeyboardListener />
         <div className="buttonWrapper">
           <ResetButton />
           <ThemeButton />

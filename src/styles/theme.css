@@ -43,13 +43,13 @@
 }
 
 .red {
-  background-image: url("../assets/imgs/b1.jpg");
+  background-image: url("../assets/imgs/backgrounds/b1.jpg");
 }
 .green {
-  background-image: url("../assets/imgs/b2.jpg");
+  background-image: url("../assets/imgs/backgrounds/b2.jpg");
 }
 .lightpink {
-  background-image: url("../assets/imgs/b3.jpg");
+  background-image: url("../assets/imgs/backgrounds/b3.jpg");
 }
 
 .red .game {
@@ -155,4 +155,16 @@
 
 .lightpink .notGuessed {
   background-color: rgb(167, 118, 92) !important;
+}
+
+.red .dash {
+  background-color: rgb(219, 134, 134);
+}
+
+.green .dash {
+  background-color: rgb(76, 205, 158);
+}
+
+.lightpink .dash {
+  background-color: rgb(226, 144, 100);
 }

@@ -22,7 +22,10 @@ body {
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  padding: 0;
   padding-top: 1em;
+  margin: 0;
 }
 
 .themeButton,
@@ -53,15 +56,71 @@ body {
   grid-template-rows: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
-  height: 90vh;
+  height: 95vh;
   width: 50vw;
-  overflow: hidden;
+  overflow: auto;
   margin: auto;
   border: 10px solid rgb(243, 209, 98);
   background-color: rgba(11, 11, 11, 0.061);
   backdrop-filter: blur(5px);
   border-radius: 5em;
   box-shadow: rgb(27, 3, 27) 8px 8px 10px;
+}
+
+.hungarian {
+  background: url("./assets/imgs/flags/hungarian.png");
+}
+
+.english {
+  background: url("./assets/imgs/flags/english.png");
+}
+
+.flags {
+  height: 44px;
+  width: 75px;
+  display: flex;
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  justify-content: space-between;
+  border: white 2px solid;
+  border-radius: 30px;
+  background-repeat: no-repeat;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.hungarian,
+.english {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.hideHu {
+  opacity: 0;
+  transform: translateX(32px);
+}
+.showHu {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.hideEn {
+  opacity: 0;
+  transform: translateX(-32px);
+}
+.showEn {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.hungarian {
+  transition: opacity 1.5s ease-in-out, transform 1s ease-in-out;
+}
+
+.english {
+  transition: opacity 1.5s ease-in-out, transform 1s ease-in-out;
 }
 
 .hangman {
@@ -90,6 +149,15 @@ body {
 .ansLetters,
 .keyboard {
   padding-top: 1em;
+}
+
+.dash {
+  border-radius: 0.4em;
+  font-weight: 600;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.559);
+  text-align: center;
+  border: 3px solid white;
+  padding: 0;
 }
 
 .ansLetter {
@@ -137,6 +205,7 @@ body {
 .win,
 .fail {
   border: 3px solid white;
+  height: 4em;
 }
 
 .space {
@@ -166,8 +235,14 @@ body {
   .keyboard {
     grid-template-columns: repeat(8, 1fr);
   }
+
+  .ansLetters{
+    max-width: 90%;
+  }
+
   .keyboard-key,
-  .ansLetter {
+  .ansLetter,
+  .dash {
     width: 30px;
     height: 30px;
     font-size: 0.8em;
@@ -183,16 +258,18 @@ body {
 
   .win,
   .fail {
-    height: 3em;
     width: 20em;
     font-size: 1em;
   }
 
-  .win {
-    height: 4em;
-  }
   .result {
     padding-bottom: 0.5em;
+  }
+
+  .flags {
+    right: 10px;
+    top: auto;
+    bottom: 20px;
   }
 }
 @media screen and (max-width: 1025px) and (min-width: 600px) {
@@ -209,11 +286,11 @@ body {
   .win,
   .fail {
     width: 20em;
-    height: 3em;
   }
 
   .keyboard-key,
-  .ansLetter {
+  .ansLetter,
+  .dash {
     width: 1.6em;
     height: 1.6em;
     font-size: 1.4em;
@@ -231,7 +308,8 @@ body {
   }
 
   .keyboard-key,
-  .ansLetter {
+  .ansLetter,
+  .dash {
     width: 1.4em;
     height: 1.4em;
     font-size: 2.3em;
@@ -240,7 +318,6 @@ body {
   .win,
   .fail {
     width: 20em;
-    height: 3.5em;
   }
 
   .keyboard,
@@ -268,7 +345,8 @@ body {
   }
 
   .keyboard-key,
-  .ansLetter {
+  .ansLetter,
+  .dash {
     font-size: 2em;
     width: 2em;
     height: 2em;
@@ -309,23 +387,19 @@ body {
   }
 
   .hangman {
-    padding: 1.5em;
     display: none;
   }
 
-  .hangman img {
-    width: 3em;
-    height: 3em;
-  }
   .game {
     height: 100vh;
   }
   .keyboard {
-    grid-template-columns: repeat(14, 1fr);
+    grid-template-columns: repeat(12, 1fr);
   }
 
   .keyboard-key,
-  .ansLetter {
+  .ansLetter,
+  .dash {
     width: 30px;
     height: 30px;
     font-size: 0.8em;
@@ -338,7 +412,8 @@ body {
 
   .ansLetters,
   .keyboard {
-    padding-bottom: 1em;
+    padding-bottom: 1.3em;
+    margin-top: .2em;
   }
 
   .game {
@@ -351,7 +426,7 @@ body {
   }
 
   .result {
-    padding-bottom: 1em;
+    padding-bottom: .2em;
   }
 
   .win,
