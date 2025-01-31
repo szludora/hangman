@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import useDataContext from "../contexts/DataContext";
 import Form from "react-bootstrap/Form";
 

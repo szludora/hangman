@@ -11,7 +11,7 @@
 
 .red .resetButton,
 .red .themeButton {
-  background-color:  #fdec7c;
+  background-color: #fdec7c;
 }
 
 .red .resetButton:hover,
@@ -87,7 +87,8 @@
   background-color: #c7ae80;
 }
 
-.win, .fail{
+.win,
+.fail {
   width: 500px;
   height: 100px;
   display: grid;
@@ -100,38 +101,58 @@
   border-radius: 30px;
 }
 
-.green .win, .green .fail{
+.green .win,
+.green .fail {
   background-color: rgb(76, 205, 158);
 }
 
-.red .win, .red .fail{
+.red .win,
+.red .fail {
   background-color: rgb(219, 134, 134);
 }
 
-.lightpink .win, .lightpink .fail{
+.lightpink .win,
+.lightpink .fail {
   background-color: rgb(226, 144, 100);
 }
 
-.red .ansLetter{
+.red .ansLetter {
   background-color: rgb(219, 134, 134);
 }
 
-.green .ansLetter{
+.green .ansLetter {
   background-color: rgb(76, 205, 158);
 }
 
-.lightpink .ansLetter{
+.lightpink .ansLetter {
   background-color: rgb(226, 144, 100);
 }
 
-.lightpink .hangman{
+.lightpink .hangman {
   background: rgb(226, 144, 100);
 }
 
-.green .hangman{
+.green .hangman {
   background: rgb(76, 205, 158);
 }
 
-.red .hangman{
+.red .hangman {
   background: rgb(219, 134, 134);
+}
+
+.notGuessed,
+.guessed {
+  border-color: rgb(113, 111, 111) !important;
+}
+
+.green .notGuessed {
+  background-color: rgb(48, 125, 97) !important;
+}
+
+.red .notGuessed {
+  background-color: rgb(143, 93, 93) !important;
+}
+
+.lightpink .notGuessed {
+  background-color: rgb(167, 118, 92) !important;
 }

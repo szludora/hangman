@@ -1,4 +1,10 @@
-import React, { useRef, createContext, useContext, useState } from "react";
+import React, {
+  useRef,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 import hm0 from "../assets/imgs/hangman/0.png";
 import hm1 from "../assets/imgs/hangman/1.png";
 import hm2 from "../assets/imgs/hangman/2.png";
@@ -28,7 +34,15 @@ export const DataProvider = ({ children }) => {
   const ansLetterKeys = useRef([]);
   const keyboardKeys = useRef([]);
   const themeClasses = ["green", "red", "lightpink"];
+  const [clickCounter, setClickCounter] = useState(0);
 
+  const [end, setEnd] = useState(false);
+  const [win, setWin] = useState(false);
+  const [value, setValue] = useState("");
+  const updatedCorrectGuess = [];
+  const alphabet = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
+
+  let answerLetters = answer.split("");
   function changeTheme() {
     if (theme == 2) {
       setTheme(0);
@@ -36,6 +50,23 @@ export const DataProvider = ({ children }) => {
       setTheme(theme + 1);
     }
   }
+
+  useEffect(() => {
+    console.log(answer);
+
+    if (mistake == images.length) {
+      setEnd(true);
+      setWin(false);
+      setStreak(0);
+
+      for (let i = 0; i < answerLetters.length; i++) {
+        if (answerLetters[i] != " " && !ansLetterKeys.current[i].value) {
+          ansLetterKeys.current[i].value = answerLetters[i];
+          ansLetterKeys.current[i].classList.add("notGuessed");
+        }
+      }
+    }
+  }, [end, remainingTries]);
 
   const images = [
     hm0,
@@ -52,17 +83,6 @@ export const DataProvider = ({ children }) => {
     hm11,
     hm12,
   ];
-
-  const [clickCounter, setClickCounter] = useState(0);
-
-  const [end, setEnd] = useState(false);
-  const [win, setWin] = useState(false);
-  const [value, setValue] = useState("");
-  const updatedCorrectGuess = [];
-  const alphabet = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
-
-  let answerLetters = answer.split("");
-
 
   function resetGame() {
     setMistake(1);
@@ -82,9 +102,9 @@ export const DataProvider = ({ children }) => {
     for (let i = 0; i < answerLetters.length; i++) {
       if (answerLetters[i] !== " ") {
         ansLetterKeys.current[i].value = "";
+        ansLetterKeys.current[i].classList.remove("notGuessed");
       }
     }
-
   }
 
   const handleReset = () => {
@@ -166,7 +186,8 @@ export const DataProvider = ({ children }) => {
         changeTheme,
         theme,
         streak,
-        setStreak,ansLetterKeys
+        setStreak,
+        ansLetterKeys,
       }}
     >
       {children}

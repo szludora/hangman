@@ -37,11 +37,6 @@ export default function Game() {
   useEffect(() => {
     console.log(answer);
 
-    if (mistake == images.length) {
-      setEnd(true);
-      setWin(false);
-      setStreak(0);
-    }
     if (!end && inputRef.current) {
       inputRef.current.focus();
     }
