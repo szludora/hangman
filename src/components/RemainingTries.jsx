@@ -3,8 +3,8 @@ import React from "react";
 import useDataContext from "../contexts/DataContext";
 
 export default function RemainingTries() {
-  const { remainingTries } = useDataContext();
+  const { state } = useDataContext();
 
 
-  return <div className="remainingtries">{remainingTries}</div>;
+  return <div className="remainingtries">{state.remainingTries}</div>;
 }

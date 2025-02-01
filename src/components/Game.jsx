@@ -11,16 +11,10 @@ import KeyboardListener from "./KeyboardListener";
 import LanguageButton from "./LanguageButton";
 
 export default function Game() {
-  const { setAnswer, words, themeClasses, theme } = useDataContext();
-
-  useEffect(() => {
-    const randomWord =
-      words.words[Math.floor(Math.random() * words.words.length)];
-    setAnswer(randomWord);
-  }, []);
-
+  const { state } = useDataContext();
+  
   return (
-    <Container fluid className={`gameContainer ${themeClasses[theme]}`}>
+    <Container fluid className={`gameContainer ${state.theme}`}>
       <div className="game">
         <LanguageButton />
         <Result />

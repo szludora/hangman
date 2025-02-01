@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useDataContext from "../contexts/DataContext";
 
-export default function LanguageButton() {
-  const { toggleLanguage, isEnglish } = useDataContext();
+const LanguageButton = () => {
+  const { state, toggleLang } = useDataContext();
 
   return (
-    <div className="flags" onClick={toggleLanguage}>
-      <div className={`hungarian ${isEnglish ? "hideHu" : "showHu"}`} />
-      <div className={`english ${isEnglish ? "showEn" : "hideEn"}`} />
+    <div className="flags" onClick={toggleLang}>
+      <div className={`hungarian ${state.isEnglish ? "hideHu" : "showHu"}`} />
+      <div className={`english ${state.isEnglish ? "showEn" : "hideEn"}`} />
     </div>
   );
-}
+};
+
+export default LanguageButton;

@@ -213,6 +213,29 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+
+  .flags {
+    height: 30px;
+    width: 50px;
+    padding: 4px;
+    right: 10px;
+    top: auto;
+    top: 15px;
+   }
+
+  .hideHu {
+    transform: translateX(19px);
+  }
+  .showHu {
+    transform: translateX(0px);
+  }
+  .hideEn {
+    transform: translateX(-19px);
+  }
+  .showEn {
+    transform: translateX(0px);
+  }
+
   .resetButton,
   .themeButton {
     width: 5em;
@@ -264,12 +287,6 @@ body {
 
   .result {
     padding-bottom: 0.5em;
-  }
-
-  .flags {
-    right: 10px;
-    top: auto;
-    bottom: 20px;
   }
 }
 @media screen and (max-width: 1025px) and (min-width: 600px) {
