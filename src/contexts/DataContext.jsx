@@ -47,11 +47,8 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     setCurrentLangWords(isEnglish ? englishWords : hungarianWords);
-  }, [isEnglish]);
-
-  useEffect(() => {
     resetGame();
-  }, [currentLangWords]);
+  }, [currentLangWords, isEnglish]);
 
   useEffect(() => {
     console.log(answer);
@@ -71,9 +68,8 @@ export const DataProvider = ({ children }) => {
   }, [end, remainingTries, clickCounter]);
 
   const toggleLanguage = () => {
-    if (handleReset()) {
-      setIsEnglish((prev) => !prev);
-    }
+    setIsEnglish((prev) => !prev);
+    console.log(isEnglish);
   };
 
   function focus() {
@@ -119,7 +115,6 @@ export const DataProvider = ({ children }) => {
 
     const randomWord =
       currentLangWords[Math.floor(Math.random() * currentLangWords.length)];
-    console.log(currentLangWords);
 
     setAnswer(randomWord);
 
@@ -139,12 +134,11 @@ export const DataProvider = ({ children }) => {
         setStreak(0);
         resetGame();
         setClickCounter(0);
-        return true;
+      } else {
       }
     } else {
       setClickCounter(0);
       resetGame();
-      return false;
     }
   };
 
@@ -157,7 +151,6 @@ export const DataProvider = ({ children }) => {
 
   const handleKeyClick = (key) => {
     focus();
-    console.log("key: ", key);
 
     if (mistake != 13 && !end && !guessed.includes(key)) {
       setGuessed((prevGuessed) => [...prevGuessed, key]);
