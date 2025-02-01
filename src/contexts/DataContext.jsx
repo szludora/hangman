@@ -4,6 +4,7 @@ import React, {
   useContext,
   useReducer,
   useEffect,
+  useState,
 } from "react";
 
 import images from "../components/Images";
@@ -96,10 +97,35 @@ function reducer(state, action) {
 export const DataProvider = ({ children }) => {
   const inputRef = useRef();
   const keyboard = useRef([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   const alphabet = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const isMobileNow =
+        window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent);
+      setIsMobile(isMobileNow);
+    };
+    
+    checkIfMobile();
+    focus();
+
+    const resizeListener = () => checkIfMobile();
+    window.addEventListener("resize", resizeListener);
+
+    return () => {
+      window.removeEventListener("resize", resizeListener);
+    };
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (!isMobile) {
+      focus();
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     if (state.answer === "") {
@@ -123,8 +149,12 @@ export const DataProvider = ({ children }) => {
   };
 
   function focus() {
-    inputRef.current.focus();
-    inputRef.current.select();
+    if (!isMobile) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    } else {
+      inputRef.current.blur();
+    }
   }
 
   const handleReset = () => {
