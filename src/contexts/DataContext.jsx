@@ -172,7 +172,7 @@ export const DataProvider = ({ children }) => {
   const handleKeyClick = (key) => {
     focus();
 
-    if (state.mistake !== 13 && !state.end && !state.guessed.includes(key)) {
+    if (state.mistake !== 13 && !state.end && !state.guessed.includes(key) && alphabet.includes(key)) {
       const isCorrect = state.answer
         .replace(/[\s–]/g, "")
         .split("")
