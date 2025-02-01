@@ -7,7 +7,7 @@ export default function HangMan() {
   return (
     <div className="hangman">
       <img
-        src={images[state.mistake - 1]}
+        src={images[state.mistake]}
         alt={`Hangman stage ${state.mistake}`}
       />
     </div>

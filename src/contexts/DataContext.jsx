@@ -20,7 +20,7 @@ const themeClasses = ["green", "red", "lightpink"];
 const initialState = {
   end: false,
   win: false,
-  mistake: 1,
+  mistake: 0,
   answer: "",
   guessed: [],
   correctGuess: [],
@@ -65,12 +65,6 @@ function reducer(state, action) {
         currentLangWords: state.currentLangWords,
         streak: state.streak,
       };
-    case ACTIONS.INCREASE_MISTAKE:
-      return {
-        ...state,
-        mistake: state.mistake + 1,
-        remainingTries: state.remainingTries - 1,
-      };
     case ACTIONS.MAKE_GUESS:
       return {
         ...state,
@@ -106,7 +100,8 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const checkIfMobile = () => {
       const isMobileNow =
-        window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent);
+        window.innerWidth <= 768 
+        //|| /Mobi|Android/i.test(navigator.userAgent);
       setIsMobile(isMobileNow);
     };
     
@@ -139,7 +134,7 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     focus();
-    if (state.mistake === images.length) {
+    if (state.mistake === images.length-1) {
       dispatch({ type: ACTIONS.LOSEGAME });
     }
   }, [state.remainingTries, state.end, state.isEnglish]);
