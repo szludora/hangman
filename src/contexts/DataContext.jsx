@@ -46,7 +46,7 @@ function reducer(state, action) {
       const currentLangWords = state.isEnglish ? hungarianWords : englishWords;
       return {
         ...initialState,
-        streak: state.streak,
+        streak: action.payload ? 0 : state.streak,
         isEnglish: !state.isEnglish,
         currentLangWords: currentLangWords,
         alphabet: !state.isEnglish ? englishKeyboard : hungarianKeyboard,
@@ -67,7 +67,8 @@ function reducer(state, action) {
         answer: getRandomWord(state.currentLangWords),
         isEnglish: state.isEnglish,
         currentLangWords: state.currentLangWords,
-        streak: state.streak,
+        alphabet: state.alphabet,
+        streak: action.payload ? 0 : state.streak,
       };
     case ACTIONS.MAKE_GUESS:
       return {
@@ -95,9 +96,10 @@ function reducer(state, action) {
 export const DataProvider = ({ children }) => {
   const inputRef = useRef();
   const keyboard = useRef([]);
-  const ansLetterKeys = useRef([]);
+  const ansLettersKeys = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const answerLetters = state.answer ? state.answer.split("") : [];
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -141,14 +143,14 @@ export const DataProvider = ({ children }) => {
           letter !== "-" &&
           !state.correctGuess.includes(letter)
         ) {
-          if (ansLetterKeys.current[i]) {
-            ansLetterKeys.current[i].value = letter;
-            ansLetterKeys.current[i].classList.add("notGuessed");
+          if (ansLettersKeys.current[i]) {
+            ansLettersKeys.current[i].value = letter;
+            ansLettersKeys.current[i].classList.add("notGuessed");
           }
         }
       });
     } else if (!state.end && state.mistake == 0) {
-      ansLetterKeys.current.forEach((input) => {
+      ansLettersKeys.current.forEach((input) => {
         if (input) {
           input.classList.remove("notGuessed");
           input.value = "";
@@ -158,12 +160,26 @@ export const DataProvider = ({ children }) => {
     if (state.mistake === images.length - 1) {
       dispatch({ type: ACTIONS.LOSEGAME });
     }
-  }, [state.end, state.guessed, state.isEnglish]);
-
-  const answerLetters = state.answer ? state.answer.split("") : [];
+  }, [
+    state.end,
+    state.guessed,
+    state.isEnglish,
+    state.answer,
+    state.correctGuess,
+    state.ansLettersKeys,
+  ]);
 
   const toggleLang = () => {
-    dispatch({ type: ACTIONS.TOGGLE_LANG });
+    const message = state.isEnglish
+      ? "Are you sure you want to switch to Hungarian?"
+      : "Biztos vagy benne, hogy angolra akarsz váltani?";
+    if (state.streak > 0) {
+      if (confirm(message)) {
+        dispatch({ type: ACTIONS.TOGGLE_LANG, payload: true });
+      }
+    } else {
+      dispatch({ type: ACTIONS.TOGGLE_LANG });
+    }
   };
 
   function focus() {
@@ -181,14 +197,10 @@ export const DataProvider = ({ children }) => {
         ? "If you don't complete this word, you will lose your streak."
         : "Ha nem teljesíted ezt a szót, elveszíted a streaked.";
       if (confirm(message)) {
-        dispatch({
-          type: ACTIONS.RESET_GAME,
-        });
+        dispatch({ type: ACTIONS.RESET_GAME, payload: true });
       }
     } else {
-      dispatch({
-        type: ACTIONS.RESET_GAME,
-      });
+      dispatch({ type: ACTIONS.RESET_GAME });
     }
   };
 
@@ -215,6 +227,7 @@ export const DataProvider = ({ children }) => {
         dispatch({ type: ACTIONS.WINGAME });
       }
     }
+    console.log(state.answer);
   };
 
   return (
@@ -231,7 +244,7 @@ export const DataProvider = ({ children }) => {
         keyboard,
         themeClasses,
         images,
-        ansLetterKeys,
+        ansLettersKeys,
         answerLetters,
       }}
     >

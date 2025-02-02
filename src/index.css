@@ -82,12 +82,14 @@ body {
   position: absolute;
   right: 30px;
   top: 40px;
+  background-color: #e7e3e3;
   justify-content: space-between;
-  border: white 2px solid;
+  border: rgb(153, 156, 154) 3px solid;
   border-radius: 30px;
   background-repeat: no-repeat;
-  padding: 5px;
   cursor: pointer;
+  padding: 4px;
+  box-shadow: black 3px 5px 5px;
 }
 
 .hungarian,
@@ -100,7 +102,7 @@ body {
 
 .hideHu {
   opacity: 0;
-  transform: translateX(32px);
+  transform: translateX(40px);
 }
 .showHu {
   opacity: 1;
@@ -108,7 +110,7 @@ body {
 }
 .hideEn {
   opacity: 0;
-  transform: translateX(-32px);
+  transform: translateX(-40px);
 }
 .showEn {
   opacity: 1;
@@ -213,15 +215,14 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-
   .flags {
     height: 30px;
     width: 50px;
-    padding: 4px;
+    padding: 3px;
     right: 10px;
     top: auto;
     top: 15px;
-   }
+  }
 
   .hideHu {
     transform: translateX(19px);
@@ -257,7 +258,7 @@ body {
     grid-template-columns: repeat(8, 1fr);
   }
 
-  .ansLetters{
+  .ansLetters {
     max-width: 90%;
   }
 
@@ -395,15 +396,19 @@ body {
 }
 
 @media screen and (orientation: landscape) and (max-width: 1000px) {
-  
   .flags {
     height: 30px;
     width: 50px;
-    padding: 4px;
+    padding: 4px ;
     right: 10px;
     top: auto;
     top: 15px;
-   }
+  }
+
+  .hungarian, .english{
+    position: relative;
+    top: -1px;
+  }
 
   .hideHu {
     transform: translateX(19px);
@@ -418,7 +423,6 @@ body {
     transform: translateX(0px);
   }
 
-  
   .resetButton,
   .themeButton {
     width: 7em;
@@ -452,7 +456,7 @@ body {
   .ansLetters,
   .keyboard {
     padding-bottom: 1.3em;
-    margin-top: .2em;
+    margin-top: 0.2em;
   }
 
   .game {
@@ -465,12 +469,12 @@ body {
   }
 
   .result {
-    padding-bottom: .2em;
+    padding-bottom: 0.2em;
   }
 
   .win,
   .fail {
-    height: 3em;
+    height: 3.4em;
     width: 25em;
     font-size: 0.8em;
   }
