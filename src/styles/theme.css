@@ -1,3 +1,36 @@
+.red .game::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 100px;
+}
+
+.green .game::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(180deg,#fab662,#defd77,#6ffda8,#cceb64,#f7968f);
+  border-radius: 10px;
+}
+
+.green .game::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg,#fab662,#defd77,#6ffda8,#cceb64,#f7968f);
+  border-radius: 10px;
+}
+
+.lightpink .game::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(180deg, #42f6ff, #6c59ea, #f299b8, #e8827b);
+
+  border-radius: 10px;
+}
+.lightpink .game::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg,  #42f6ff, #6c59ea, #f299b8, #e8827b);
+  border-radius: 10px;
+}
+.red .game::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(180deg, #42f6ff, #7ae294, #fda3c3, #fa6156);
+  border-radius: 10px;
+}
+.red .game::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg, #42f6ff, #7ae294, #fda3c3, #fa6156);
+  border-radius: 10px;
+}
+
 .resetButton,
 .themeButton {
   font-weight: 500;

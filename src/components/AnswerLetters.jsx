@@ -19,7 +19,9 @@ export default function AnswerLetters() {
               : ""
           }
           className={
-            state.end && !state.correctGuess.includes(letter)
+            letter === " "
+              ? "space "
+              : state.end && !state.correctGuess.includes(letter)
               ? "ansLetter notGuessed"
               : "ansLetter"
           }
