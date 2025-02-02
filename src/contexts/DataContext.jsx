@@ -37,7 +37,7 @@ const initialState = {
 };
 
 const getRandomWord = (langWords) => {
-  return langWords[Math.floor(Math.random() * langWords.length)];
+  return langWords[Math.floor(Math.random() * langWords.length)].toLowerCase();
 };
 
 function reducer(state, action) {
@@ -46,6 +46,7 @@ function reducer(state, action) {
       const currentLangWords = state.isEnglish ? hungarianWords : englishWords;
       return {
         ...initialState,
+        theme: state.theme,
         streak: action.payload ? 0 : state.streak,
         isEnglish: !state.isEnglish,
         currentLangWords: currentLangWords,
@@ -64,6 +65,7 @@ function reducer(state, action) {
     case ACTIONS.RESET_GAME:
       return {
         ...initialState,
+        theme: state.theme,
         answer: getRandomWord(state.currentLangWords),
         isEnglish: state.isEnglish,
         currentLangWords: state.currentLangWords,
@@ -160,20 +162,13 @@ export const DataProvider = ({ children }) => {
     if (state.mistake === images.length - 1) {
       dispatch({ type: ACTIONS.LOSEGAME });
     }
-  }, [
-    state.end,
-    state.guessed,
-    state.isEnglish,
-    state.answer,
-    state.correctGuess,
-    state.ansLettersKeys,
-  ]);
+  }, [state.end, state.guessed, state.isEnglish]);
 
   const toggleLang = () => {
     const message = state.isEnglish
       ? "Are you sure you want to switch to Hungarian?"
       : "Biztos vagy benne, hogy angolra akarsz váltani?";
-    if (state.streak > 0) {
+    if (state.streak > 0 && !state.win) {
       if (confirm(message)) {
         dispatch({ type: ACTIONS.TOGGLE_LANG, payload: true });
       }
@@ -192,7 +187,8 @@ export const DataProvider = ({ children }) => {
   }
 
   const handleReset = () => {
-    if (!state.win && state.mistake < 13 && state.streak > 0) {
+    focus();
+    if (!state.win && state.mistake < 12 && state.streak > 0) {
       const message = state.isEnglish
         ? "If you don't complete this word, you will lose your streak."
         : "Ha nem teljesíted ezt a szót, elveszíted a streaked.";
@@ -207,7 +203,12 @@ export const DataProvider = ({ children }) => {
   const handleKeyClick = (key) => {
     focus();
 
-    if (state.mistake !== 13 && !state.end && !state.guessed.includes(key)) {
+    if (
+      state.mistake < 12 &&
+      !state.end &&
+      !state.guessed.includes(key) &&
+      state.alphabet.includes(key)
+    ) {
       const isCorrect = state.answer
         .replace(/[\s–]/g, "")
         .split("")
@@ -227,7 +228,6 @@ export const DataProvider = ({ children }) => {
         dispatch({ type: ACTIONS.WINGAME });
       }
     }
-    console.log(state.answer);
   };
 
   return (
