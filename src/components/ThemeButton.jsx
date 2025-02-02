@@ -4,7 +4,7 @@ import useDataContext from "../contexts/DataContext";
 import ACTIONS from "./Actions";
 
 export default function ThemeButton() {
-  const { dispatch } = useDataContext();
+  const { dispatch, state } = useDataContext();
 
   function toggleTheme() {
     dispatch({ type: ACTIONS.CHANGE_THEME });
@@ -12,7 +12,7 @@ export default function ThemeButton() {
 
   return (
     <Button variant="primary" className="themeButton" onClick={toggleTheme}>
-      Theme
+      {state.isEnglish? "Theme" : "Válts Témát"}
     </Button>
   );
 }

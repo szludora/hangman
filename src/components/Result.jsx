@@ -1,20 +1,31 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import useDataContext from "../contexts/DataContext";
 
 export default function Result() {
-  const { state, clickCounter} = useDataContext();
-  
+  const { state } = useDataContext();
+  const message = {
+    win: state.isEnglish
+      ? "Congratulation, you win! Streak: "
+      : "Gratulálok, nyertél! Streak: ",
+    fail: state.isEnglish
+      ? "Sorry, you didn't guess the word. Streak: "
+      : "Sajnálom, nem találtad el a szót. Streak: ",
+    remainingTries: state.isEnglish
+      ? "Number of remaining attempts "
+      : "Hátralévő próbálkozások száma: ",
+  };
+
   return (
     <div className="result">
-      {state.end ? (
-        state.win ? (
-          <div className="win">Congratulation, you win! Streak: {state.streak}</div>
-        ) : (
-          <div className="fail">Sorry, you didn't catch the word. You lost {state.streak} streak.</div>
-        )
-      ) : (
-        <div className="remainingTries">Hátralévő próbálkozások száma: {state.remainingTries}</div>
-      )}
+      <div
+        className={state.end ? (state.win ? "win" : "fail") : "remainingTries"}
+      >
+        {state.end
+          ? state.win
+            ? `${message.win} ${state.streak}`
+            : `${message.fail} ${state.streak}`
+          : `${message.remainingTries} ${state.remainingTries}`}
+      </div>
     </div>
   );
 }
