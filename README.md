@@ -57,5 +57,8 @@ To run the project locally, follow these steps:
 
 ![Nevtelen-1](https://github.com/user-attachments/assets/dac32ca5-4f95-44e9-ac4c-c6e8b47a3240)
 ![Nevtelen-2](https://github.com/user-attachments/assets/d7af1d2f-9646-4628-b9ff-3056b963e45d)
-![2222](https://github.com/user-attachments/assets/3d95e2b5-5ca7-4b29-867a-b6c088a36a5f)
+
+![htzhtzhtz](https://github.com/user-attachments/assets/e24830eb-59f2-4362-90fd-4c4d1822fa9e)
+![ztjutzjtz](https://github.com/user-attachments/assets/bab09c01-0251-4319-8645-d639b54e2bf8)
+
 
