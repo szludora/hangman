@@ -1,35 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useDataContext from "../contexts/DataContext";
 import Form from "react-bootstrap/Form";
 
 export default function AnswerLetters() {
-  const { state } = useDataContext();
-  const answerLetters = state.answer ? state.answer.split("") : [];
-
-  const displayLetter = (letter) => {
-    return state.correctGuess.includes(letter) ? letter : "";
-  };
-  console.log(state);
+  const { state, ansLetterKeys, answerLetters } = useDataContext();
 
   return (
     <div className="ansLetters">
       {answerLetters.map((letter, i) =>
         letter === " " ? (
-          <div className="space" key={`space-${i}`}/>
+          <div className="space" key={i} />
         ) : letter === "-" ? (
           <Form.Control
-            index={i}
-            value={"–"}
+            value="–"
             className="dash"
-            key={`dash-${i}`}
+            key={i}
             disabled
             type="text"
           />
         ) : (
           <Form.Control
-            index={i}
-            value={displayLetter(letter)}
-            key={`letter-${i}`}
+            ref={(el) => (ansLetterKeys.current[i] = el)}
+            value={
+              state.end || state.correctGuess.includes(letter) ? letter : ""
+            }
+            key={i}
             disabled
             type="text"
             className="ansLetter"

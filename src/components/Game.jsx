@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Result from "../components/Result";
 import AnswerLetters from "../components/AnswerLetters";
 import HangMan from "../components/HangMan";

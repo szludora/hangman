@@ -101,19 +101,20 @@
   border-radius: 30px;
 }
 
-.green .win,
-.green .fail {
+.green .win {
   background-color: rgb(76, 205, 158);
 }
 
-.red .win,
-.red .fail {
+.red .win {
   background-color: rgb(219, 134, 134);
 }
 
-.lightpink .win,
-.lightpink .fail {
+.lightpink .win {
   background-color: rgb(226, 144, 100);
+}
+
+.fail{
+  background-color: rgb(255, 152, 152);
 }
 
 .red .ansLetter {

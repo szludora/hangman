@@ -16,6 +16,8 @@ const DataContext = createContext();
 const englishWords = words.englishWords;
 const hungarianWords = words.words;
 const themeClasses = ["green", "red", "lightpink"];
+const hungarianKeyboard = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
+const englishKeyboard = "qwertyuiopasdfghjklzxcvbnm".split("");
 
 const initialState = {
   end: false,
@@ -31,6 +33,7 @@ const initialState = {
   value: "",
   isEnglish: false,
   currentLangWords: hungarianWords,
+  alphabet: hungarianKeyboard,
 };
 
 const getRandomWord = (langWords) => {
@@ -46,6 +49,7 @@ function reducer(state, action) {
         streak: state.streak,
         isEnglish: !state.isEnglish,
         currentLangWords: currentLangWords,
+        alphabet: !state.isEnglish ? englishKeyboard : hungarianKeyboard,
         answer: getRandomWord(currentLangWords),
       };
     }
@@ -91,20 +95,17 @@ function reducer(state, action) {
 export const DataProvider = ({ children }) => {
   const inputRef = useRef();
   const keyboard = useRef([]);
+  const ansLetterKeys = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
-
-  const alphabet = "qwertzuiopőúasdfghjkléáűíyxcvbnmöüó".split("");
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const checkIfMobile = () => {
-      const isMobileNow =
-        window.innerWidth <= 768 
-        //|| /Mobi|Android/i.test(navigator.userAgent);
+      const isMobileNow = window.innerWidth <= 768;
+      //|| /Mobi|Android/i.test(navigator.userAgent);
       setIsMobile(isMobileNow);
     };
-    
+
     checkIfMobile();
     focus();
 
@@ -133,11 +134,33 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    focus();
-    if (state.mistake === images.length-1) {
+    if (state.end) {
+      answerLetters.forEach((letter, i) => {
+        if (
+          letter !== " " &&
+          letter !== "-" &&
+          !state.correctGuess.includes(letter)
+        ) {
+          if (ansLetterKeys.current[i]) {
+            ansLetterKeys.current[i].value = letter;
+            ansLetterKeys.current[i].classList.add("notGuessed");
+          }
+        }
+      });
+    } else if (!state.end && state.mistake == 0) {
+      ansLetterKeys.current.forEach((input) => {
+        if (input) {
+          input.classList.remove("notGuessed");
+          input.value = "";
+        }
+      });
+    }
+    if (state.mistake === images.length - 1) {
       dispatch({ type: ACTIONS.LOSEGAME });
     }
-  }, [state.remainingTries, state.end, state.isEnglish]);
+  }, [state.end, state.guessed, state.isEnglish]);
+
+  const answerLetters = state.answer ? state.answer.split("") : [];
 
   const toggleLang = () => {
     dispatch({ type: ACTIONS.TOGGLE_LANG });
@@ -172,7 +195,7 @@ export const DataProvider = ({ children }) => {
   const handleKeyClick = (key) => {
     focus();
 
-    if (state.mistake !== 13 && !state.end && !state.guessed.includes(key) && alphabet.includes(key)) {
+    if (state.mistake !== 13 && !state.end && !state.guessed.includes(key)) {
       const isCorrect = state.answer
         .replace(/[\s–]/g, "")
         .split("")
@@ -206,9 +229,10 @@ export const DataProvider = ({ children }) => {
         dispatch,
         inputRef,
         keyboard,
-        alphabet,
         themeClasses,
         images,
+        ansLetterKeys,
+        answerLetters,
       }}
     >
       {children}
